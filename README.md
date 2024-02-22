@@ -12,3 +12,5 @@ Or, to get everything, use the green "Code" button:
 Either way, be sure to save (or move) the downloaded files to a deliberate location.
 And if you downloaded a ZIP archive, *extract* the files.
 
+Alternatively, if you have a GitHub accout and some version of Git or GitHub Desktop installed locally, you can clone the whole repo in the normal way.
+
