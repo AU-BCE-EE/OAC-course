@@ -1,0 +1,126 @@
+"study","test","lab_id","test_id","method_biogas","method_comp","mix"
+1,1,1,141,"Manual volumetric","Gas chromatography","Manual (daily)"
+1,1,3,115,"AMPTS II","None (CO2 removed)",NA
+1,1,4,138,"Automated manometric (commerical)","Gas chromatography","Continuous mechanical"
+1,1,6,136,"Manual manometric","Gas chromatography","Manual (daily)"
+1,1,8,140,"AMPTS II","None","Continuous mechanical"
+1,1,9,103,"Manual manometric","Gas chromatography",NA
+1,1,10,118,"AMPTS II","None (CO2 removed)",NA
+1,1,11,146,"Manual volumetric","Infrared","Continuous mechanical"
+1,1,12,143,"Absolute GC","None","Manual (daily)"
+1,1,13,154,"AMPTS II","None","Continuous mechanical"
+1,1,14,155,"Manual volumetric","Other (describe)",NA
+1,1,15,105,"AMPTS II","None (CO2 removed)",NA
+1,1,18,153,"Manual volumetric","Gas chromatography","Continuous mechanical"
+1,1,19,121,"AMPTS II","None (CO2 removed)",NA
+1,1,21,109,"AMPTS II","None (CO2 removed)",NA
+1,1,23,116,"Manual manometric","Gas chromatography",NA
+1,1,24,144,"Other automated volumetric (custom)","Infrared","Manual (daily)"
+1,1,25,156,"Manual volumetric","Gas chromatography","Other (specify)"
+1,1,26,112,"AMPTS II","None (CO2 removed)",NA
+1,1,27,123,"Gravimetric","Gas chromatography",NA
+1,1,28,139,"AMPTS II","None","Other (specify)"
+1,1,29,117,"AMPTS II","None (CO2 removed)",NA
+1,1,30,108,"AMPTS II","None (CO2 removed)",NA
+1,1,31,130,"Manual volumetric","Gas chromatography","Continuous mechanical"
+1,1,31,135,"AMPTS II","None","Continuous mechanical"
+1,1,33,152,"Other automated volumetric (custom)","None","Continuous magnetic"
+1,2,1,131,"Manual volumetric","Gas chromatography","Manual (daily)"
+1,2,3,119,"AMPTS II","None (CO2 removed)",NA
+1,2,4,142,"Automated manometric (commerical)","Gas chromatography","Continuous mechanical"
+1,2,5,114,"Manual manometric","Gas chromatography",NA
+1,2,6,145,"Manual manometric","Gas chromatography","Manual (daily)"
+1,2,8,134,"AMPTS II","None","Continuous mechanical"
+1,2,9,110,"Manual manometric","Gas chromatography",NA
+1,2,10,111,"AMPTS II","None (CO2 removed)",NA
+1,2,12,132,"Absolute GC","None","Manual (daily)"
+1,2,13,149,"AMPTS II","None","Continuous mechanical"
+1,2,15,104,"AMPTS II","None (CO2 removed)",NA
+1,2,18,137,"Manual volumetric","Gas chromatography","Continuous mechanical"
+1,2,19,106,"AMPTS II","None (CO2 removed)",NA
+1,2,21,122,"AMPTS II","None (CO2 removed)",NA
+1,2,23,120,"Manual manometric","Gas chromatography",NA
+1,2,24,148,"Other automated volumetric (custom)","Infrared","Manual (daily)"
+1,2,25,133,"Manual volumetric","Gas chromatography","Other (specify)"
+1,2,26,101,"AMPTS II","None (CO2 removed)",NA
+1,2,27,107,"Gravimetric","Gas chromatography",NA
+1,2,28,147,"AMPTS II","None","Other (specify)"
+1,2,29,113,"AMPTS II","None (CO2 removed)",NA
+1,2,30,102,"AMPTS II","None (CO2 removed)",NA
+1,2,31,150,"AMPTS II","None","Continuous mechanical"
+1,2,31,151,"Manual volumetric","Gas chromatography","Continuous mechanical"
+1,3,23,116,"Manual manometric","Gas chromatography",NA
+2,1,1,253,"Manual volumetric","Gas chromatography","Manual (daily)"
+2,1,1,273,"Manual volumetric","Gas chromatography","Manual (daily)"
+2,1,2,227,"Manual manometric","Infrared","Manual (daily)"
+2,1,2,244,"Manual manometric","Infrared","Manual (daily)"
+2,1,3,228,"AMPTS II","None","Continuous mechanical"
+2,1,3,257,"AMPTS II","None","Continuous mechanical"
+2,1,3,265,"AMPTS II","None","Continuous mechanical"
+2,1,4,205,"Automated manometric (custom)","Gas chromatography","Continuous mechanical"
+2,1,5,248,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,5,259,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,6,213,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,6,218,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,8,219,"AMPTS II","None","Continuous mechanical"
+2,1,8,270,"AMPTS II","None","Manual (daily)"
+2,1,9,214,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,9,231,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,9,251,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,10,246,"AMPTS II","None","Other (specify)"
+2,1,10,249,"AMPTS II","None","Other (specify)"
+2,1,11,202,"Manual volumetric","Infrared","Continuous mechanical"
+2,1,11,252,"Manual volumetric","Infrared","Continuous mechanical"
+2,1,12,267,"Absolute GC","None","Manual (daily)"
+2,1,13,236,"AMPTS II","None","Continuous mechanical"
+2,1,13,262,"AMPTS II","None","Continuous mechanical"
+2,1,14,230,"Manual volumetric","Other (describe)","Manual (daily)"
+2,1,14,240,"Manual volumetric","Other (describe)","Manual (daily)"
+2,1,15,217,"AMPTS II","None","Other (specify)"
+2,1,15,239,"AMPTS II","None","Other (specify)"
+2,1,15,268,"AMPTS II","None","Other (specify)"
+2,1,16,235,"Other automated volumetric (custom)","Gas chromatography","Manual (daily)"
+2,1,18,242,"Manual volumetric","Gas chromatography","orbital shaker"
+2,1,18,258,"Manual volumetric","Gas chromatography","Continuous mechanical"
+2,1,19,225,"AMPTS II","None","Continuous mechanical"
+2,1,19,272,"AMPTS II","None","Continuous mechanical"
+2,1,20,266,"Absolute GC",NA,"Manual (daily)"
+2,1,21,210,"Other automated volumetric (commercial)","None","Other (specify)"
+2,1,21,241,"Other automated volumetric (commercial)","None","Other (specify)"
+2,1,21,255,"AMPTS II","None","Other (specify)"
+2,1,21,263,"AMPTS II","None","Other (specify)"
+2,1,23,247,"Manual manometric","Gas chromatography","Continuous mechanical"
+2,1,23,269,"Manual manometric","Gas chromatography","Continuous mechanical"
+2,1,24,206,"Other automated volumetric (custom)","Infrared","Manual (daily)"
+2,1,24,221,"Other automated volumetric (custom)","Infrared","Manual (daily)"
+2,1,25,234,"Manual volumetric","Gas chromatography","Other (specify)"
+2,1,25,261,"Manual volumetric","Gas chromatography","Other (specify)"
+2,1,26,209,"AMPTS II","None","Manual (daily)"
+2,1,26,229,"AMPTS II","None","Manual (daily)"
+2,1,27,212,"Manual volumetric","Gas density","Manual (daily)"
+2,1,28,243,"AMPTS II","None","Continuous mechanical"
+2,1,28,250,"AMPTS II","None","Continuous mechanical"
+2,1,29,237,"AMPTS II","None","Continuous mechanical"
+2,1,29,238,"AMPTS II","None","Continuous mechanical"
+2,1,30,271,"AMPTS II","None","Continuous mechanical"
+2,1,31,204,"AMPTS II","None","Continuous mechanical"
+2,1,31,224,"Manual manometric","Gas chromatography","Continuous mechanical"
+2,1,31,233,"Manual volumetric","Gas chromatography","Continuous mechanical"
+2,1,31,245,"AMPTS II","None","Continuous mechanical"
+2,1,32,203,"Manual volumetric","Gas chromatography","Manual (daily)"
+2,1,33,256,"Other automated volumetric (custom)","None","Continuous magnetic"
+2,1,34,254,"Other automated volumetric (commercial)","None","Continuous mechanical"
+2,1,35,216,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,35,222,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,36,215,"Manual volumetric","None","Manual (daily)"
+2,1,36,232,"Manual volumetric","None","Manual (daily)"
+2,1,37,207,"AMPTS II","None","Continuous mechanical"
+2,1,37,208,"AMPTS II","None","Continuous mechanical"
+2,1,37,226,"AMPTS II","None","Continuous mechanical"
+2,1,38,223,"AMPTS II","None","Continuous mechanical"
+2,1,39,211,"Gravimetric","Gas chromatography","Manual (daily)"
+2,1,39,220,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,39,264,"Gravimetric","Gas chromatography","Manual (daily)"
+2,1,39,274,"Manual manometric","Gas chromatography","Manual (daily)"
+2,1,40,201,"AMPTS II","None","Continuous mechanical"
+2,1,40,260,"AMPTS II","None","Continuous mechanical"
