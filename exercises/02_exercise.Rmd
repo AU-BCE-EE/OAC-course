@@ -15,13 +15,17 @@ Read in the data in the file `slurry_emis.csv`.
 Check the data.
 The relevant columns are 
 
-* `reactor` bottle key
-* `ch4` methane concentration in bottle exhaust
-* `flow` rate of gas flow through the bottle
-* `day` time of measurement from setup
-* `gas` headspace gas
-* `temp` incubation temperature
+* `reactor`: bottle key
+* `ch4`: methane concentration in bottle exhaust in ppmv
+* `flow`: rate of gas flow through the bottle in L/min
+* `day`: time of measurement from setup in d
+* `gas`: headspace gas
+* `temp`: incubation temperature
 
 # 2. Data analysis
 Use an appropriate approach to determine if the data show that incubation temperature and headspace gas affect methane emission.
 Quantify any effect.
+
+### My suggestion
+I recommend using response feature analysis with calculated total emission as the response variable, fitting a linear model using `lm()` in R or `ols()` in Python.
+But you could use other responses.
