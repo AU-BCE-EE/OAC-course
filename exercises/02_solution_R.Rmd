@@ -1,0 +1,214 @@
+---
+title: 'Exercise 2. Data analysis'
+author: 'Sasha D. Hafner'
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+urlcolor: blue
+---
+
+**R data.table solution**
+
+# Overview
+In this exercise you will analyze emission of methane from pig slurry samples incubated in a laboratory experiment.
+Multiple bottles were used as reactors in a completely crossed factorial experiment with 2 temperatures and 2 headspace gases.
+Measurement data were kindly provided by Frederik Dalby.
+
+### My suggestion
+I recommend using response feature analysis with calculated total emission as the response variable, fitting a linear model using `lm()` in R or `ols()` in Python.
+But you could use other responses.
+
+# 1. Read and check data
+Read in the data in the file `slurry_emis.csv`.
+Check the data.
+The relevant columns are 
+
+* `reactor`: bottle key
+* `ch4`: methane concentration in bottle exhaust in ppmv
+* `flow`: rate of gas flow through the bottle in L/min
+* `day`: time of measurement from setup in d
+* `gas`: headspace gas
+* `temp`: incubation temperature
+
+## Load packages
+
+```{r}
+library(data.table)
+library(rmarkdown)
+library(ggplot2)
+```
+
+## Function
+```{r}
+source('../functions-R/dfsumm.R')
+```
+
+## Load data
+
+```{r}
+dat <- fread('../data/slurry_emis.csv')
+```
+
+## Check data
+
+```{r}
+dat
+```
+
+```{r}
+summary(dat)
+```
+
+```{r}
+dfsumm(dat)
+```
+
+```{r}
+dim(dat)
+```
+
+```{r}
+table(dat[, reactor])
+```
+
+# 2. Data analysis
+*Use an appropriate approach to determine if the data show that incubation temperature and headspace gas affect methane emission.
+Quantify any effect.*
+
+## Calculate methane flow rate
+First we need mass-based methane concentration.
+From ideal gas law `pv = nRT` we get `Mn / v = p / RT`.
+Assume 20 degress C and 1 atm (would be good to check if these were really our data).
+Temperature should be at the point of flow rate measurement, right?
+And `gas_constant = 8.2057E-5` for the universal gas constant in atm m^3^k mol^-1^ K^-1^.
+So first, concentration in g/m3:
+
+```{r}
+dat[, cmch4 := ch4 * 1.0 / 1E6 / 8.2057E-5 / (273.15 + 20)]
+dat
+```
+
+And flow in g/d:
+
+```{r}
+dat[, qch4 := cmch4 * flow / 1000 * 1400]
+dat
+```
+
+## Get integration function
+
+```{r}
+source('../functions-R/mintegrate.R')
+```
+
+## Integrate
+
+```{r}
+dim(dat)
+dat <- dat[!is.na(qch4), ]
+dim(dat)
+
+dat[, ech4 := mintegrate(day, qch4), by = .(reactor, gas, temp)]
+
+dattot <- dat[, .(ech4 = mintegrate(day, qch4, value = 'total')), by = .(reactor, gas, temp)]
+```
+
+## Plot
+
+```{r}
+ggplot(dattot, aes(gas, ech4, colour = factor(temp))) +
+  geom_jitter(height = 0, width = 0.2)
+```
+
+```{r}
+ggplot(dat, aes(day, qch4, colour = factor(temp), lty = factor(gas), group = reactor)) +
+  geom_line()
+```
+
+```{r}
+ggplot(dat, aes(day, ech4, colour = factor(temp), lty = factor(gas), group = reactor)) +
+  geom_line()
+```
+
+## Replication
+
+```{r}
+table(dattot[, .(gas, temp)])
+table(dattot[, .(reactor, gas, temp)])
+```
+
+Drop background.
+
+```{r}
+dattot <- dattot[!reactor == 'bg', ]
+```
+
+```{r}
+table(dattot[, .(gas, temp)])
+```
+
+```{r}
+ggplot(dattot, aes(gas, ech4, colour = factor(temp))) +
+  geom_jitter(height = 0, width = 0.2)
+```
+
+```{r}
+ggplot(dattot, aes(gas, ech4, fill = factor(temp))) +
+  geom_boxplot()
+```
+
+Look at log transformation.
+Looks like constant variance assumption would be better.
+We can compare with and without.
+
+```{r}
+ggplot(dattot, aes(gas, log10(ech4), fill = factor(temp))) +
+  geom_boxplot()
+```
+
+## Statistical comparisons
+
+```{r}
+dattot[, temp := factor(temp)]
+dattot[, gas := factor(gas)]
+```
+
+```{r}
+mod1 <- aov(ech4 ~ temp*gas, data = dattot)
+summary(mod1)
+```
+
+```{r}
+TukeyHSD(mod1)
+```
+
+```{r}
+plot(mod1, ask = FALSE)
+```
+
+```{r}
+confint(mod1)
+```
+
+Now with transformation.
+
+```{r}
+mod2 <- aov(log10(ech4) ~ temp*gas, data = dattot)
+summary(mod2)
+```
+
+```{r}
+TukeyHSD(mod2)
+```
+
+```{r}
+plot(mod2, ask = FALSE)
+```
+
+```{r}
+confint(mod2)
+```
+
+Back-transform.
+
+```{r}
+10^confint(mod2) - 1
+```

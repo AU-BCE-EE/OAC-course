@@ -1,0 +1,150 @@
+---
+title: 'Exercise 1. Data manipulation'
+author: 'Sasha D. Hafner'
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+urlcolor: blue
+---
+
+** R data.table solution **
+
+# 1. Read in data
+
+```{r}
+library(data.table)
+air <- fread('../../data/air_cleaners.csv')
+```
+
+```{r}
+air
+```
+
+# 2. Check data
+
+```{r}
+source('../../R-functions/dfsumm.R')
+```
+
+```{r}
+dfsumm(air)
+```
+
+```{r}
+summary(air)
+```
+
+```{r}
+dim(air)
+```
+
+# 3. Subset
+
+```{r}
+ns <- air[aircleaner == 'NoSmell4.2', ]
+dim(ns)
+```
+
+```{r}
+tol <- air[aircleaner == 'NoSmell4.2' & compound_name == 'Toluene' & flow_dir == 'In', ]
+tol
+dim(tol)
+```
+
+
+# 4. Merge
+
+```{r}
+mm <- fread('../../data/mol_mass.csv')
+mm
+```
+
+```{r}
+dim(air)
+air <- merge(air, mm, by = 'form')
+dim(air)
+air
+```
+
+# 5. Add columns
+
+```{r}
+air[, concm := mol_mass * 1.0 * concentration / 1E9 / 8.2057E-5 / (273.15 + 20)]
+air
+```
+
+In g/min.
+
+```{r}
+air[, mass_flow := concm * 0.1]
+air
+```
+
+# 6. Dates and times
+
+```{r}
+class(air[, timestamp])
+```
+
+```{r}
+air[, timestamp := as.POSIXct(timestamp, format = '%m/%d/%Y %H:%M')]
+```
+
+```{r}
+air[, etime_min := timestamp - as.POSIXct('03/10/2022 13:40', format = '%m/%d/%Y %H:%M')]
+air
+```
+
+```{r}
+air[, etime_min := as.numeric(timestamp - as.POSIXct('03/10/2022 13:40', format = '%m/%d/%Y %H:%M'), units = 'mins')]
+air
+```
+
+# 7. Grouped operations
+
+```{r}
+summ <- air[, .(conc_mean = mean(concentration), conc_sd = sd(concentration)), by = .(aircleaner, flow_dir, compound_name)]
+summ
+```
+
+# 8. Export
+
+```{r}
+fwrite(summ, 'output/cleaner_summary.csv')
+```
+
+# 9. Integrate
+
+```{r}
+source('../../R-functions/mintegrate.R')
+```
+
+```{r}
+air[, mass_cum := mintegrate(etime_min, mass_flow, method = 'trap'), by = .(aircleaner, compound_name, flow_dir)]
+air
+```
+
+```{r}
+airtot <- air[, .(mass_tot = mintegrate(etime_min, mass_flow, method = 'trap', value = 'total')), by = .(aircleaner, compound_name, flow_dir)]
+```
+
+# 10. Reshape
+
+```{r}
+airw <- dcast(airtot, aircleaner + compound_name ~ flow_dir, value.var = 'mass_tot')
+airw
+```
+
+```{r}
+airw[, rem_eff := 100 * (1 - Out / In)]
+airw
+```
+
+```{r}
+library(ggplot2)
+ggplot(airw, aes(compound_name, rem_eff, colour = aircleaner)) +
+  geom_point()
+```
+
+
+
+
+
