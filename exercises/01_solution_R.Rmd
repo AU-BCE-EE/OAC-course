@@ -11,7 +11,7 @@ urlcolor: blue
 
 ```{r}
 library(data.table)
-air <- fread('../../data/air_cleaners.csv')
+air <- fread('../data/air_cleaners.csv')
 ```
 
 ```{r}
@@ -21,7 +21,7 @@ air
 # 2. Check data
 
 ```{r}
-source('../../R-functions/dfsumm.R')
+source('../functions-R/dfsumm.R')
 ```
 
 ```{r}
@@ -53,7 +53,7 @@ dim(tol)
 # 4. Merge
 
 ```{r}
-mm <- fread('../../data/mol_mass.csv')
+mm <- fread('../data/mol_mass.csv')
 mm
 ```
 
@@ -114,7 +114,7 @@ fwrite(summ, 'output/cleaner_summary.csv')
 # 9. Integrate
 
 ```{r}
-source('../../R-functions/mintegrate.R')
+source('../functions-R/mintegrate.R')
 ```
 
 ```{r}
@@ -129,8 +129,10 @@ airtot <- air[, .(mass_tot = mintegrate(etime_min, mass_flow, method = 'trap', v
 # 10. Reshape
 
 ```{r}
+head(airtot)
 airw <- dcast(airtot, aircleaner + compound_name ~ flow_dir, value.var = 'mass_tot')
 airw
+head(airw)
 ```
 
 ```{r}

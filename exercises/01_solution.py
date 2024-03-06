@@ -35,6 +35,7 @@ mm = pd.read_csv('../data/mol_mass.csv')
 print(mm.shape)
 mm
 
+air
 print(air.shape)
 air = pd.merge(air, mm, on = 'form')
 print(air.shape)
@@ -42,6 +43,9 @@ print(air)
 air
 
 # 5. Add columns
+# pv = nRT
+# g / m3 
+# ppmv * mol_mass * pressure / gas_constant / temperature
 air['concm'] = air['mol_mass'] * 1.0 * air['concentration'] / 1E9 / 8.2057E-5 / (273.15 + 20)
 air
 
@@ -52,8 +56,9 @@ airflow
 air = pd.merge(air, airflow, on = 'aircleaner')
 air
 
-# In g/min.
+# In g/h.
 air
+# g/h                 g/m3       *      m3/h
 air['mass_flow'] = air['concm'] * air['air_flow']
 print(air)
 
@@ -71,22 +76,24 @@ air['etime_min'] = (air['timestamp'] - pd.to_datetime('03/10/2022 13:40')).dt.to
 print(air)
 
 # 7. Grouped operations
+# Don't need lamba bit here 
 summ_mean = air.groupby(['aircleaner', 'flow_dir', 'compound_name'])['concentration'].mean()
 summ_sd = air.groupby(['aircleaner', 'flow_dir', 'compound_name'])['concentration'].std()
 print(summ_mean)
 print(summ_sd)
 
 summ = pd.merge(summ_mean, summ_sd, on = ['aircleaner', 'flow_dir', 'compound_name'])
-print(summ)
+summ.head()
 summ = summ.reset_index()
 print(summ)
+summ.head()
 
 # 8. Export
 summ.to_csv('output/cleaner_summary.csv')
 
 # 9. Integrate
 import shutil as sh
-sh.copy('../../python-functions/mintegrate.py', '.')
+sh.copy('../functions-python/mintegrate.py', '.')
 from mintegrate import mintegrate
 
 print(air)
@@ -95,12 +102,16 @@ print(air)
 
 airtot = air.groupby(['aircleaner', 'flow_dir', 'compound_name']).apply(lambda x: mintegrate(x['etime_min'], x['mass_flow'], value = 'total')).reset_index(name = 'mass_tot')
 print(airtot)
+airtot.head()
 
 # 10. Reshape
 airw = airtot.pivot_table(index = ['aircleaner', 'compound_name'], columns = ['flow_dir'], values = ['mass_tot']).reset_index()
 print(airw)
+airw.head()
+air.head()
 
-print(airw.keys)
+#print(airw.keys)
 airw['rem_eff'] = 100 * (1 - airw['mass_tot']['Out'] / airw['mass_tot']['In'])
 print(airw)
+airw.head()
 
