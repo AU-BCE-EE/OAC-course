@@ -1,0 +1,22 @@
+"pmid","inst","institute","submitter","file","app_method","treat","tan_app","e_cum_final","e_rel_final","rain_tot"
+1935,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx","bsth","eGylle_bLS",68.21,18.391,0.26963,29.8
+1936,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx","bsth","eGylle_bLS",70.005,35.852,0.51214,0.6
+1937,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx","os","eGylle_bLS",30.205,3.8795,0.12844,5
+1938,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx","bsth","eGylle_bLS",61.748,10.717,0.17356,18.2
+1939,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_7_0_eGylle_NL_DE_JK.xlsx","bsth","eGylle_bLS_Alpha1",70.005,25.029,0.35754,0
+1940,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_7_0_eGylle_NL_DE_JK.xlsx","bsth","eGylle_bLS_Alpha2",70.005,26.734,0.38189,0
+1945,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_7_0_eGylle_NL_DE_JK.xlsx","os","eGylle_bLS_avg_time",30.205,3.7539,0.12428,0
+1946,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_7_0_eGylle_NL_DE_JK.xlsx","os","eGylle_IHF",30.205,2.4193,0.080097,0
+2220,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_JNK_2019_Aug_5_5_b.xlsx","os","AGM",56.7,9.3627,0.16513,36.4
+2221,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_JNK_2019_Aug_5_5_b.xlsx","os","CRDS_1m",56.7,13.136,0.23168,36.4
+2222,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_JNK_2019_Aug_5_5_b.xlsx","os","CRDS_2m",56.7,12.662,0.22332,36.4
+2223,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_JNK_2019_Aug_5_5_b.xlsx","os","MD",56.7,15.529,0.27389,36.4
+2224,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_JNK_2019_May_5_6_a.xlsx","os","AGM",54,5.697,0.1055,22.6
+2225,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_JNK_2019_May_5_6_a.xlsx","os","CRDS_1m",54,6.3328,0.11727,22.6
+2226,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_JNK_2019_May_5_6_a.xlsx","os","CRDS_2m",54,5.9028,0.10931,22.6
+2248,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_7_0_eGylle_NL_DE_JK.xlsx","os","eGylle_bLS_acid_traps_0.25m",30.205,4.5115,0.14936,0
+2249,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_7_0_eGylle_NL_DE_JK.xlsx","os","eGylle_bLS_acid_traps_0.54m",30.205,3.7808,0.12517,0
+2250,205,"AU","Jesper Nørlem Kamp","../../data-submitted/03/AU/ALFAM2_template_7_0_eGylle_NL_DE_JK.xlsx","os","eGylle_bLS_acid_traps_1.04m",30.205,5.1918,0.17189,0
+2302,205,"AU","Pedersen, Johanna; Kamp, Jesper","../../data-submitted/03/AU/ALFAM2_template_7.0_DFCtest_JP_231108_JK.xlsx","bsth","bLS",64.05,22.727,0.35484,0
+2311,205,"AU","Pedersen, Johanna; Kamp, Jesper","../../data-submitted/03/AU/ALFAM2_template_7.0_DFCtest_JP_231108_JK.xlsx","os","bLS_inj",67.55,0.24102,0.0035681,1
+2312,205,"AU","Pedersen, Johanna; Kamp, Jesper","../../data-submitted/03/AU/ALFAM2_template_7.0_DFCtest_JP_231108_JK.xlsx","bsth","bLS_th",67.55,6.5219,0.09655,1
