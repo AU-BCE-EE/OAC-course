@@ -1,0 +1,123 @@
+---
+title: 'Exercise 3. Data analysis'
+author: 'Sasha D. Hafner'
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+urlcolor: blue
+---
+
+# Overview
+In this exercise you will analyze volatilization of ammonia from field-applied manure to try to infer wheather rain has an effect.
+
+# 1. Read and check data
+Read in the data in the files `NH3_emis_rain_interval.csv` and `NH3_emis_rain_plot.csv` and merge by the field plot key `pmid`.
+Check the data.
+The relevant columns are 
+
+* `pmid`: field plot key
+* `cta`: time after slurry application (h)
+* `j__NH3`: ammonia volatilization rate in preceding interval (`cta[i-1]` to `cta[i]`) (kg N / h-ha)
+* `rain_rate`: rainfall rate in preceding interval (mm/h)
+* `air_temp`: air temperature (deg. C)
+* `wind_2m`: wind speed (m/s)
+* `app_method`: slurry application method
+
+# 2. Single experimental unit
+Plot the ammonia volatilization rate data from plot `pmid` = 2223.
+Do you see strong evidence of a rain effect?
+Focus on 50 h `< cta <` 100 h.
+
+# 3. Multiple experimental units
+Can you think of an approach for estimation and evaluation of an overall rain effect using data from all the plots?
+This is not simple.
+See how far you can get.
+
+```{r}
+library(data.table)
+library(ggplot2)
+library(viridisLite)
+```
+
+```{r}
+idat <- fread('../data/NH3_emis_rain_interval.csv')
+pdat <- fread('../data/NH3_emis_rain_plot.csv')
+idat <- merge(idat, pdat)
+```
+
+```{r}
+ggplot(idat, aes(cta, j_NH3, colour = app_method, group = pmid)) +
+  geom_line() +
+  geom_point(data = idat[rain_rate > 0, ], colour = 'red') +
+  facet_wrap(~ pmid) +
+  xlim(0, 168) 
+```
+
+```{r}
+dd <- idat[pmid == 2223, ]
+ggplot(dd, aes(ct, j_NH3, colour = rain_rate, group = pmid)) +
+  geom_line(lwd = 1) +
+  geom_point(size = 3) +
+  xlim(50, 100) +
+  ylim(0, 0.07) +
+  scale_colour_viridis_c()
+```
+
+Look at total emission
+
+```{r}
+ggplot(pdat, aes(rain_tot, e_rel_final, colour = app_method)) +
+  geom_point(size = 4)
+mod1 <- lm(e_rel_final ~ rain_tot * app_method, data = pdat)
+summary(mod1)
+```
+
+```{r}
+ggplot(dd, aes(ct, j_NH3, colour = rain_rate, group = pmid)) +
+  geom_line() +
+  geom_point() +
+  xlim(50, 100) +
+  ylim(0, 0.07) +
+  scale_colour_viridis_c()
+```
+
+
+```{r}
+ggplot(idat, aes(cta, log10(j_NH3), colour = app_method, group = pmid)) +
+  geom_line() +
+  geom_point(data = idat[rain_rate > 0, ], colour = 'orange') +
+  facet_wrap(~ pmid) +
+  xlim(0, 168)
+```
+
+```{r}
+idatsub <- idat[!is.na(j_NH3 + cta + rain + rain_rate + rain_cum + air_temp + wind_2m) & j_NH3 > 0, ]
+mod1 <- lm(log10(j_NH3) ~ poly(cta, 3):app_method + (rain_cum + air_temp + wind_2m):factor(pmid) + app_method, data = idatsub)
+summary(mod1)
+cc <- coef(mod1)
+cr <- cc[grepl('rain', names(cc))]
+ct <- cc[grepl('temp', names(cc))]
+cr
+ct
+idatsub[, j_pred := predict(mod1)]
+hist(cr)
+```
+
+```{r}
+dd <- idatsub[pmid == 2221, ]
+ggplot(dd, aes(cta, log10(j_NH3), colour = app_method, group = pmid)) +
+  geom_line() +
+  geom_line(aes(y = j_pred), colour = 'gray45', lwd = 2) +
+  geom_point(data = idat[rain_rate > 0, ], colour = 'orange') +
+  xlim(0, 168)
+```
+
+```{r}
+t.test(cr)
+t.test(ct)
+```
+
+```{r}
+binom.test(table(cr < 0)) 
+binom.test(table(ct < 0)) 
+```
+
+
